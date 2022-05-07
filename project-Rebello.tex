@@ -83,16 +83,20 @@ After using TDIDF to tokenize the data, and running the pre-processed data using
 \textbf{Classifier}          & \multicolumn{3}{l|}{\textbf{Bot}}                                                          & \multicolumn{3}{l|}{\textbf{Human}}                                                            & \textbf{Global}   \\ \hline
 \textbf{}                    & \multicolumn{1}{l|}{\textbf{Precision}} & \multicolumn{1}{l|}{\textbf{Recall}} & \textbf{F1} & \multicolumn{1}{l|}{\textbf{Precision}} & \multicolumn{1}{l|}{\textbf{Recall}} & \textbf{F1} & \textbf{Accuracy} \\ \hline
 \textbf{Logistic Regression} & \multicolumn{1}{l|}{0.72}               & \multicolumn{1}{l|}{0.80}            & 0.76        & \multicolumn{1}{l|}{0.78}               & \multicolumn{1}{l|}{0.68}            & 0.73        & 0.74              \\ \hline
-\textbf{Support Vector}      & \multicolumn{1}{l|}{0.71}               & \multicolumn{1}{l|}{0.83}            & 0.77        & \multicolumn{1}{l|}{0.80}               & \multicolumn{1}{l|}{0.66}            & 0.72        & 0.75              \\ \hline
+\textbf{Support Vector}      & \multicolumn{1}{l|}{0.71}               & \multicolumn{1}{l|}{0.83}            & 0.77        & \multicolumn{1}{l|}{0.80}               & \multicolumn{1}{l|}{0.66}            & 0.72        & \textbf{0.75}              \\ \hline
 \textbf{Random Forest}       & \multicolumn{1}{l|}{0.69}               & \multicolumn{1}{l|}{0.82}            & 0.75        & \multicolumn{1}{l|}{0.78}               & \multicolumn{1}{l|}{0.64}            & 0.70        & 0.73              \\ \hline
 \textbf{LSTM}                & \multicolumn{1}{l|}{0.55}                   & \multicolumn{1}{l|}{0.50}                & 0.53 & \multicolumn{1}{l|}{0.46}                   & \multicolumn{1}{l|}{0.50}                &0.48             & 0.73             \\ \hline
 \end{tabular}
 \caption{TDIDF results for the classifiers}
 \label{table:tdidf}
 \end{table}
- For the LSTM the training loss vs the validation loss is shown below.
-\\ \includegraphics[width=16cm, height=12cm]{tfidf_loss}\\ 
-
+ For the LSTM the training loss vs the validation loss is shown below fig:\ref{fig:tfidf_loss}.
+\begin{figure}[h!]
+	\centering
+	\caption{Train vs. Valid losses for TF-IDF embeddings}
+	\label{fig:tfidf_loss}
+	\includegraphics[width=8cm, height=6cm]{tfidf_loss} 
+\end{figure}
 \subsection{BERT Embeddings Results}
 Similar to the TFIDF results, the best hyperparameters for logistic regression are 'C'  to 1, for support vector classifier are 'C' to 1, and 'kernel' to 'linear', and for random forest classifier are 'max depth' to 30, 'min samples leaf' to 5, 'min samples split' to 15, and 'n estimators' to 300. The overall performance shows that BERT improves performance by at least 10 \% across models.  The best model overall is the LSTM with 86 \% for accuracy. The performance of the models is shown below, \ref{table:bert}
 \begin{table}[ht]
@@ -103,15 +107,19 @@ Similar to the TFIDF results, the best hyperparameters for logistic regression a
 \textbf{Logistic Regression} & \multicolumn{1}{l|}{0.83}               & \multicolumn{1}{l|}{0.85}            & 0.84        & \multicolumn{1}{l|}{0.85}               & \multicolumn{1}{l|}{0.82}            & 0.84        & 0.84              \\ \hline
 \textbf{Support Vector}      & \multicolumn{1}{l|}{0.83}               & \multicolumn{1}{l|}{0.86}            & 0.85        & \multicolumn{1}{l|}{0.86}               & \multicolumn{1}{l|}{0.82}            & 0.84        & 0.84              \\ \hline
 \textbf{Random Forest}       & \multicolumn{1}{l|}{0.80}               & \multicolumn{1}{l|}{0.87}            & 0.83        & \multicolumn{1}{l|}{0.86}               & \multicolumn{1}{l|}{0.78}            & 0.82        & 0.83              \\ \hline
-\textbf{LSTM}                & \multicolumn{1}{l|}{0.56}                   & \multicolumn{1}{l|}{0.50}                &0.53             & \multicolumn{1}{l|}{0.44}                   & \multicolumn{1}{l|}{0.50}                &0.47            & 0.86              \\ \hline
+\textbf{LSTM}                & \multicolumn{1}{l|}{0.56}                   & \multicolumn{1}{l|}{0.50}                &0.53             & \multicolumn{1}{l|}{0.44}                   & \multicolumn{1}{l|}{0.50}                &0.47            & \textbf{0.86}              \\ \hline
 \end{tabular}
 \caption{BERT embedding results for the classifiers}
 \label{table:bert}
 \end{table}
 
- For the LSTM the training loss vs the validation loss is shown below.
-\\ \includegraphics[width=16cm, height=12cm]{bert_loss}\\
-
+ For the LSTM the training loss vs the validation loss is shown below fig: \ref{fig:bert_loss}.
+\begin{figure}[h!]
+	\centering
+	\caption{Train vs. Valid losses for BERT embeddings}
+	\label{fig:bert_loss}
+	\includegraphics[width=8cm, height=6cm]{bert_loss}
+\end{figure}
 \section{Discussion}
 From this study we can see that in general popular classifiers are able to do well against a multitude of different writing styles, both human and bot. With a probability better than chance, all these models are able to predict whether a certain text is from a human or a bot. Using BERT embeddings tends to improve the performance of the classifiers which would indicate that semantic understanding of texts is an important guage when trying to discern whether a certain statement is artificially generated or not. 
 
