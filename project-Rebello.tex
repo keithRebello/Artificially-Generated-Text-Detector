@@ -85,7 +85,7 @@ After using TDIDF to tokenize the data, and running the pre-processed data using
 \textbf{Logistic Regression} & \multicolumn{1}{l|}{0.72}               & \multicolumn{1}{l|}{0.80}            & 0.76        & \multicolumn{1}{l|}{0.78}               & \multicolumn{1}{l|}{0.68}            & 0.73        & 0.74              \\ \hline
 \textbf{Support Vector}      & \multicolumn{1}{l|}{0.71}               & \multicolumn{1}{l|}{0.83}            & 0.77        & \multicolumn{1}{l|}{0.80}               & \multicolumn{1}{l|}{0.66}            & 0.72        & 0.75              \\ \hline
 \textbf{Random Forest}       & \multicolumn{1}{l|}{0.69}               & \multicolumn{1}{l|}{0.82}            & 0.75        & \multicolumn{1}{l|}{0.78}               & \multicolumn{1}{l|}{0.64}            & 0.70        & 0.73              \\ \hline
-\textbf{LSTM}                & \multicolumn{1}{l|}{0.60}                   & \multicolumn{1}{l|}{0.51}                & 0.55            & \multicolumn{1}{l|}{0.44}                   & \multicolumn{1}{l|}{0.52}                &0.47             & 0.73             \\ \hline
+\textbf{LSTM}                & \multicolumn{1}{l|}{0.55}                   & \multicolumn{1}{l|}{0.50}                & 0.53 & \multicolumn{1}{l|}{0.46}                   & \multicolumn{1}{l|}{0.50}                &0.48             & 0.73             \\ \hline
 \end{tabular}
 \caption{TDIDF results for the classifiers}
 \label{table:tdidf}
@@ -94,7 +94,7 @@ After using TDIDF to tokenize the data, and running the pre-processed data using
 \\ \includegraphics[width=16cm, height=12cm]{tfidf_loss}\\ 
 
 \subsection{BERT Embeddings Results}
-Similar to the TFIDF results, the best hyperparameters for logistic regression are 'C'  to 1, for support vector classifier are 'C' to 1, and 'kernel' to 'linear', and for random forest classifier are 'max depth' to 30, 'min samples leaf' to 5, 'min samples split' to 15, and 'n estimators' to 300. The overall performance shows that BERT improves performance by 10 \% in the best case and stays the same in the worst case with LSTM.  The best model overall seems to be SVM in both cases. In this BERT case the performance is 84\% for accuracy. The performance of the models is shown below, \ref{table:bert}
+Similar to the TFIDF results, the best hyperparameters for logistic regression are 'C'  to 1, for support vector classifier are 'C' to 1, and 'kernel' to 'linear', and for random forest classifier are 'max depth' to 30, 'min samples leaf' to 5, 'min samples split' to 15, and 'n estimators' to 300. The overall performance shows that BERT improves performance by at least 10 \% across models.  The best model overall is the LSTM with 86 \% for accuracy. The performance of the models is shown below, \ref{table:bert}
 \begin{table}[ht]
 \begin{tabular}{|l|lll|lll|l|}
 \hline
@@ -103,7 +103,7 @@ Similar to the TFIDF results, the best hyperparameters for logistic regression a
 \textbf{Logistic Regression} & \multicolumn{1}{l|}{0.83}               & \multicolumn{1}{l|}{0.85}            & 0.84        & \multicolumn{1}{l|}{0.85}               & \multicolumn{1}{l|}{0.82}            & 0.84        & 0.84              \\ \hline
 \textbf{Support Vector}      & \multicolumn{1}{l|}{0.83}               & \multicolumn{1}{l|}{0.86}            & 0.85        & \multicolumn{1}{l|}{0.86}               & \multicolumn{1}{l|}{0.82}            & 0.84        & 0.84              \\ \hline
 \textbf{Random Forest}       & \multicolumn{1}{l|}{0.80}               & \multicolumn{1}{l|}{0.87}            & 0.83        & \multicolumn{1}{l|}{0.86}               & \multicolumn{1}{l|}{0.78}            & 0.82        & 0.83              \\ \hline
-\textbf{LSTM}                & \multicolumn{1}{l|}{0.58}                   & \multicolumn{1}{l|}{0.50}                &0.53             & \multicolumn{1}{l|}{0.41}                   & \multicolumn{1}{l|}{0.49}                &0.45             & 0.73              \\ \hline
+\textbf{LSTM}                & \multicolumn{1}{l|}{0.56}                   & \multicolumn{1}{l|}{0.50}                &0.53             & \multicolumn{1}{l|}{0.44}                   & \multicolumn{1}{l|}{0.50}                &0.47            & 0.86              \\ \hline
 \end{tabular}
 \caption{BERT embedding results for the classifiers}
 \label{table:bert}
@@ -113,10 +113,10 @@ Similar to the TFIDF results, the best hyperparameters for logistic regression a
 \\ \includegraphics[width=16cm, height=12cm]{bert_loss}\\
 
 \section{Discussion}
-From this study we can see that in general popular classifiers are able to do well against a multitude of different writing styles, both human and bot. With a probability better than chance, all these models are able to predict whether a certain text is from a human or a bot. Using BERT embeddings tends to improve the performance of the classifiers in most cases which would indicate that semantic understanding of texts is an important guage when trying to discern whether a certain statement is artificially generated or not. The LSTM model does not seem to improve much when incorporating BERT embeddings, this maybe due to the ability of these systems to already imbue semantic understanding accross the text due to the sequential recurrent nature of the model.
+From this study we can see that in general popular classifiers are able to do well against a multitude of different writing styles, both human and bot. With a probability better than chance, all these models are able to predict whether a certain text is from a human or a bot. Using BERT embeddings tends to improve the performance of the classifiers which would indicate that semantic understanding of texts is an important guage when trying to discern whether a certain statement is artificially generated or not. 
 
 \section{Conclusions}
-This study sought to gauge the ability of classifiers to differentiate between text that is generated by human and artificially generated text. By looking at various classifiers such as random forest, support vector machines, logistic regression and LSTMs  this study determined the best performance for the best set up of each classifier through hyper-parameter tuning. Additionally this study also looked the improvement of the models performance when using BERT word embeddings to tokenize the text. It was seen that support vector machines with BERT embeddings is the best model with a global accuracy of 84\%  
+This study sought to gauge the ability of classifiers to differentiate between text that is generated by human and artificially generated text. By looking at various classifiers such as random forest, support vector machines, logistic regression and LSTMs  this study determined the best performance for the best set up of each classifier through hyper-parameter tuning. Additionally this study also looked the improvement of the models performance when using BERT word embeddings to tokenize the text. It was seen that LSTMs with BERT embeddings is the best model with a global accuracy of 86\%  
 \bibliographystyle{plain}
 \bibliography{ref}
 
